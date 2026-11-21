@@ -1,0 +1,12 @@
+# Telegram exports contain private messages and profile photos.
+DataExport_*/
+result.json
+
+# Local settings and generated files.
+.env
+.env.*
+*.log
+__pycache__/
+
+# Unused binary file with a misleading Markdown extension.
+assets/README.md

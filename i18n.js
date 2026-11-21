@@ -1,0 +1,173 @@
+(() => {
+  const copy = {
+    'Telegram активность': ['Активность Telegram', 'Telegram activity'],
+    'Личный обзор': ['Личный обзор', 'Your'],
+    'Язык': ['Язык', 'Language'],
+    'Русский': ['Русский', 'Русский'],
+    'Выбрать папку экспорта': ['Выбрать папку экспорта', 'Choose export folder'],
+    'ЛИЧНАЯ СТАТИСТИКА TELEGRAM': ['ТВОЯ СТАТИСТИКА TELEGRAM', 'YOUR TELEGRAM STATS'],
+    'У каждого дня': ['У каждого дня', 'Every day has'],
+    'своя статистика': ['своя история', 'a story to tell'],
+    'Исследуй то как ты проводил время в телеграмме': ['Посмотри, как менялось твоё общение в Telegram.', 'Explore how your conversations changed over time.'],
+    'НАЧАТЬ АНАЛИЗ': ['НАЧАТЬ АНАЛИЗ', 'GET STARTED'],
+    'Выберите экспорт Telegram': ['Выбери экспорт Telegram', 'Choose a Telegram export'],
+    'В Telegram Desktop откройте': ['В Telegram Desktop открой', 'In Telegram Desktop, open'],
+    'Настройки -> Продвинутые настройки -> Экспорт данных': ['Настройки → Продвинутые настройки → Экспорт данных', 'Settings → Advanced → Export Telegram data'],
+    'Выберите нужные чаты. Чтобы экспорт прошёл быстрее, отключи': ['Выбери нужные чаты. Чтобы экспорт прошёл быстрее, отключи', 'Choose the chats you want. For a faster export, turn off'],
+    'фотографии и другие медиафайлы': ['фотографии и другие медиафайлы', 'photos and other media'],
+    'Внизу окна экспорта обязательно выбери формат': ['Внизу окна экспорта обязательно выбери формат', 'At the bottom of the export window, make sure to choose'],
+    ', затем дождитесь завершения.': [', затем дождись завершения.', ', then wait for the export to finish.'],
+    'Обычно папка называется ...\\Downloads\\Telegram Desktop\\DataExport_yyyy-mm-dd': ['Обычно папка называется ...\\Downloads\\Telegram Desktop\\DataExport_yyyy-mm-dd', 'The folder is usually named ...\\Downloads\\Telegram Desktop\\DataExport_yyyy-mm-dd'],
+    'Или открыть только result.json': ['Или открыть только result.json', 'Or open result.json only'],
+    'Браузер попросит выбрать экспорт при каждом открытии страницы. Данные остаются на вашем устройстве.': ['При каждом открытии страницы браузер попросит выбрать экспорт снова. Данные останутся на твоём устройстве.', 'Your browser will ask you to choose the export each time. Your data stays on your device.'],
+    'Сообщений всего': ['Всего сообщений', 'Total messages'],
+    'Твои + сообщения других участников': ['Твои и сообщения других участников', 'Yours and everyone else’s'],
+    'Твоих сообщений': ['Твоих сообщений', 'Your messages'],
+    'Пик активности': ['Пик активности', 'Activity peak'],
+    'Активных чатов': ['Активных чатов', 'Active chats'],
+    'ДИНАМИКА': ['ДИНАМИКА', 'ACTIVITY'],
+    'Волна активности': ['Волна активности', 'Activity wave'],
+    'Все чаты': ['Все чаты', 'All chats'],
+    'Число сообщений за выбранный период': ['Число сообщений за выбранный период', 'Messages in the selected period'],
+    'Режим': ['Режим', 'View'],
+    'Один график': ['Один график', 'One chart'],
+    'По каждому чату': ['По каждому чату', 'One chart per chat'],
+    'Тип': ['Тип', 'Type'],
+    'Все типы': ['Все типы', 'All types'],
+    'Личные': ['Личные', 'Personal'],
+    'Группы': ['Группы', 'Groups'],
+    'Каналы': ['Каналы', 'Channels'],
+    'Боты': ['Боты', 'Bots'],
+    'Чат': ['Чат', 'Chat'],
+    'Шаг': ['Шаг', 'Interval'],
+    'День': ['День', 'Day'],
+    'Неделя': ['Неделя', 'Week'],
+    'Месяц': ['Месяц', 'Month'],
+    'Масштаб': ['Масштаб', 'Zoom'],
+    '90 дней': ['90 дней', '90 days'],
+    'С': ['С', 'From'],
+    'По': ['По', 'To'],
+    'Показать': ['Показать', 'Show'],
+    'Применить период ко всем чатам': ['Применить период ко всем чатам', 'Apply period to all chats'],
+    'Все сообщения': ['Все сообщения', 'All messages'],
+    'Твои сообщения': ['Твои сообщения', 'Your messages'],
+    'ВНУТРИ ПИКА': ['ВНУТРИ ПИКА', 'INSIDE THE PEAK'],
+    'Что происходило в этот день?': ['Что происходило в этот день?', 'What happened on this day?'],
+    'Кликни по интересующему дню на графике выше - здесь появится подробная статистика.': ['Кликни по интересующему дню на графике — здесь появятся подробности.', 'Click a day on the chart to see the details here.'],
+    'КОНТЕКСТ': ['КОНТЕКСТ', 'CONTEXT'],
+    'Сообщения за выбранный период': ['Сообщения за выбранный период', 'Messages in the selected period'],
+    'Выбери день на графике или в календаре либо открой серию.': ['Выбери день на графике или в календаре либо открой серию.', 'Choose a day on the chart or calendar, or open a streak.'],
+    'Показать контекст': ['Показать сообщения', 'Show messages'],
+    'Тексты сообщений загружаются только по кнопке.': ['Тексты сообщений загружаются только по кнопке.', 'Message text loads only when you click the button.'],
+    '← Раньше': ['← Раньше', '← Earlier'],
+    'Позже →': ['Позже →', 'Later →'],
+    'КАЛЕНДАРЬ': ['КАЛЕНДАРЬ', 'CALENDAR'],
+    'Каждый день на виду': ['Каждый день на виду', 'Every day at a glance'],
+    'Ярче цвет -> больше сообщений. Нажми на день, чтобы открыть его на графике.': ['Чем ярче цвет, тем больше сообщений. Нажми на день, чтобы открыть его на графике.', 'Brighter days have more messages. Click a day to open it on the chart.'],
+    'Год': ['Год', 'Year'],
+    'Меньше': ['Меньше', 'Less'],
+    'Больше': ['Больше', 'More'],
+    'РЕКОРДЫ': ['РЕКОРДЫ', 'RECORDS'],
+    'Серии и моменты': ['Серии и моменты', 'Streaks and moments'],
+    'Все чаты за весь период экспорта.': ['Все чаты за весь период экспорта.', 'All chats across the full export.'],
+    'Самая длинная серия': ['Самая длинная серия', 'Longest streak'],
+    'Показать на графике': ['Показать на графике', 'Show on chart'],
+    'Серия к концу экспорта': ['Серия к концу экспорта', 'Streak at the end of the export'],
+    'Самая длинная пауза': ['Самая длинная пауза', 'Longest gap'],
+    'Самый активный день': ['Самый активный день', 'Most active day'],
+    'РИТМ НЕДЕЛИ': ['РИТМ НЕДЕЛИ', 'WEEKLY RHYTHM'],
+    'Когда ты чаще пишешь': ['Когда ты чаще пишешь', 'When you write most'],
+    'Твои сообщения по дням недели и часам из выбранного периода.': ['Твои сообщения по дням недели и часам за выбранный период.', 'Your messages by weekday and hour in the selected period.'],
+    'Светлые клетки — редкие часы, коралловые — самые активные. Время берётся из экспорта Telegram.': ['Светлые клетки — спокойные часы, коралловые — самые активные. Время берётся из экспорта Telegram.', 'Light cells are quiet hours; coral cells are the busiest. Times come from your Telegram export.'],
+    'ДИАЛОГИ': ['ДИАЛОГИ', 'CHATS'],
+    'Самые активные чаты': ['Самые активные чаты', 'Most active chats'],
+    'Рейтинг считается за выбранный период или день на графике.': ['Рейтинг показывает активность за выбранный период или день.', 'The ranking covers the selected period or day.'],
+    'ЗА ВЫБРАННЫЙ ПЕРИОД': ['ЗА ВЫБРАННЫЙ ПЕРИОД', 'SELECTED PERIOD'],
+    'Детали': ['Детали', 'Details'],
+    'Сообщения других участников': ['Сообщения других участников', 'Messages from others'],
+    'Анализ выполняется только в этом браузере. Тексты сообщений открываются лишь по кнопке «Показать контекст» и никуда не отправляются.': ['Анализ идёт только в этом браузере. Тексты сообщений открываются по кнопке «Показать сообщения» и никуда не отправляются.', 'Analysis runs only in this browser. Message text appears only when you click “Show messages” and is never uploaded.'],
+    'СЛОВА ЧАТА': ['СЛОВА ЧАТА', 'CHAT WORDS'],
+    'Популярные слова': ['Популярные слова', 'Popular words'],
+    'Какие слова чаще всего звучали в переписке? Ссылки, команды и частые служебные слова не учитываются.': ['Какие слова встречаются чаще всего? Ссылки, команды и частые служебные слова не учитываются.', 'Which words appear most often? Links, commands, and common filler words are excluded.'],
+    'Размер топа': ['Размер топа', 'Top'],
+    'Топ‑5': ['Топ‑5', 'Top 5'],
+    'Топ‑10': ['Топ‑10', 'Top 10'],
+    'Топ‑25': ['Топ‑25', 'Top 25'],
+    'Топ‑50': ['Топ‑50', 'Top 50'],
+    'Топ‑100': ['Топ‑100', 'Top 100'],
+    'Собрать слова': ['Собрать слова', 'Count words'],
+    'Выбери чат и нажми «Собрать слова».': ['Выбери чат и нажми «Собрать слова».', 'Choose a chat and click “Count words”.'],
+    'СЛОВО ВО ВРЕМЕНИ': ['СЛОВО ВО ВРЕМЕНИ', 'WORD OVER TIME'],
+    'Когда писали это слово': ['Когда писали это слово', 'When was this word used?'],
+    'Точное слово без учёта регистра. Анализ запускается только по кнопке.': ['Ищем точное слово без учёта регистра. Анализ запускается по кнопке.', 'Find an exact word, ignoring case. Analysis starts when you click the button.'],
+    'Слово': ['Слово', 'Word'],
+    'Найти по датам': ['Найти по датам', 'Find by date'],
+    'Введите слово и нажмите кнопку.': ['Введи слово и нажми кнопку.', 'Enter a word and click the button.'],
+    'Время ответа': ['Время ответа', 'Reply time'],
+    'Твои ответы и ответы собеседника отдельно. Быстрый — до минуты, долгий — больше часа. Считаем паузу от последней реплики другой стороны или от указанного сообщения, если есть ссылка на ответ. В личных чатах учитываем паузы до 30 дней, в остальных — до 6 часов. Среднее чувствительно к редким долгим паузам; «типичное» — медиана. Без ссылки на ответ это оценка.': ['Твои ответы и ответы собеседника показаны отдельно. Быстрый — до минуты, долгий — больше часа. Если есть ссылка на сообщение, считаем от него; иначе — от последней реплики другой стороны. В личных чатах учитываем паузы до 30 дней, в остальных — до 6 часов. «Типичное» время — медиана, а среднее чувствительно к долгим паузам.', 'Your replies and the other person’s replies are shown separately. Quick means up to one minute; long means over one hour. When a reply link exists, timing starts there; otherwise it starts at the previous message from the other side. We include gaps up to 30 days in personal chats and 6 hours elsewhere. “Typical” is the median; the mean is sensitive to long gaps.'],
+    'Важно: время ответа приблизительное.': ['Важно: время ответа приблизительное.', 'Note: reply times are estimates.'],
+    'Если сообщение не связано с предыдущим через «Ответить», программа не знает, был это ответ или начало нового разговора. Долгая пауза может ошибочно попасть в среднее.': ['Если нет ссылки «Ответить», нельзя точно понять, ответ это или начало нового разговора. Долгая пауза может ошибочно попасть в среднее.', 'Without an explicit reply link, we cannot tell whether a message is a reply or a new conversation. A long gap may be included in the mean by mistake.'],
+    'Посчитать ответы': ['Посчитать ответы', 'Calculate replies'],
+    'Расчёт запускается только по кнопке.': ['Расчёт запускается только по кнопке.', 'Calculation starts when you click the button.'],
+    'СТИКЕРЫ': ['СТИКЕРЫ', 'STICKERS'],
+    'Кто чаще отправляет стикеры': ['Кто чаще отправляет стикеры', 'Who sends more stickers?'],
+    'Считаем сообщения, отмеченные в JSON как стикеры. Анализ запускается только по кнопке.': ['Считаем сообщения, помеченные в JSON как стикеры. Анализ запускается по кнопке.', 'We count messages marked as stickers in the JSON. Analysis starts when you click the button.'],
+    'Посчитать стикеры': ['Посчитать стикеры', 'Count stickers'],
+    'Выбери чат и нажми кнопку.': ['Выбери чат и нажми кнопку.', 'Choose a chat and click the button.'],
+    'ОГОНЬКИ': ['ОГОНЬКИ', 'STREAKS'],
+    'Серии по чатам': ['Серии по чатам', 'Streaks by chat'],
+    'Дни подряд с сообщениями в каждом чате. В личном чате это серия общения с человеком.': ['Дни подряд с сообщениями в каждом чате. В личном чате это серия общения с человеком.', 'Consecutive days with messages in each chat. In a personal chat, this is a conversation streak.'],
+    'Период: —': ['Период: —', 'Period: —'],
+    'Посмотреть демо на вымышленных данных': ['Посмотреть демо на вымышленных данных', 'Try a demo with fictional data'],
+    'Графики и статистика': ['Графики и статистика', 'Charts and stats'],
+    'Сохранить все карточки в PDF': ['Сохранить все карточки в PDF', 'Save all cards as PDF'],
+    'В открывшемся окне выбери «Сохранить как PDF».': ['В открывшемся окне выбери «Сохранить как PDF».', 'In the print dialog, choose “Save as PDF”.'],
+    'ТВОЙ ГОД': ['ТВОЙ ГОД', 'YOUR YEAR'],
+    'Итог года': ['Итог года', 'Year in review'],
+    'За всё время': ['За всё время', 'All time'],
+    'Листай карточки и сохраняй понравившиеся в PNG. Демо использует только вымышленные сообщения.': ['Листай карточки и сохраняй понравившиеся в PNG. Демо использует только вымышленные сообщения.', 'Browse the cards and save your favorites as PNGs. The demo uses fictional messages only.'],
+    'Скрыть имена чатов': ['Скрыть имена чатов', 'Hide chat names'],
+    'Скрыть точные числа': ['Скрыть точные числа', 'Hide exact counts'],
+    'Скрыть даты': ['Скрыть даты', 'Hide dates'],
+    'Перед публикацией проверь карточку: она может рассказать о твоей переписке больше, чем кажется.': ['Перед публикацией проверь карточку: она может рассказать о твоей переписке больше, чем кажется.', 'Check each card before sharing: it may reveal more about your chats than you expect.'],
+  };
+  const attributes = {
+    'Аватар профиля': 'Profile picture', 'Поиск чата': 'Search chats', 'Найти чат': 'Search chats',
+    'Например, Бля': 'For example, hello', 'Найти человека или чат': 'Find a person or chat',
+    'Поиск по чатам': 'Search chats', 'Язык интерфейса': 'Interface language',
+    'Отдалить': 'Zoom out', 'Приблизить': 'Zoom in',
+    'График сообщений по времени': 'Messages over time', 'Прокрутить график по времени': 'Scroll chart through time',
+  };
+  const initialText = [];
+  const initialAttributes = [];
+  if (document.createTreeWalker && typeof NodeFilter !== 'undefined') {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const node = walker.currentNode, key = node.nodeValue.trim();
+      if (copy[key]) initialText.push({ node, key, prefix: node.nodeValue.slice(0, node.nodeValue.indexOf(key)), suffix: node.nodeValue.slice(node.nodeValue.indexOf(key) + key.length) });
+    }
+    for (const element of document.querySelectorAll('[placeholder],[aria-label],[title],[alt]')) {
+      for (const attr of ['placeholder', 'aria-label', 'title', 'alt']) {
+        const value = element.getAttribute(attr);
+        if (attributes[value]) initialAttributes.push({ element, attr, ru: value, en: attributes[value] });
+      }
+    }
+  }
+  let lang = 'ru';
+  try { if (typeof localStorage !== 'undefined' && localStorage.getItem('tgactivity-language') === 'en') lang = 'en'; } catch (_) { /* Some file:// browsers block storage. */ }
+  const api = {
+    get lang() { return lang; },
+    t(ru, en) { return lang === 'en' ? en : ru; },
+    setLanguage(next) {
+      lang = next === 'en' ? 'en' : 'ru';
+      try { if (typeof localStorage !== 'undefined') localStorage.setItem('tgactivity-language', lang); } catch (_) { /* The language switch still works for this page. */ }
+      if (document.documentElement) document.documentElement.lang = lang;
+      for (const { node, key, prefix, suffix } of initialText) node.nodeValue = prefix + copy[key][lang === 'en' ? 1 : 0] + suffix;
+      for (const { element, attr, ru, en } of initialAttributes) element.setAttribute(attr, lang === 'en' ? en : ru);
+      const selector = document.getElementById('language-filter');
+      if (selector) selector.value = lang;
+    },
+  };
+  globalThis.TgI18n = api;
+  api.setLanguage(lang);
+})();
