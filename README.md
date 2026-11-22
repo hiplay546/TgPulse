@@ -4,6 +4,12 @@
 
 Локальная страница с графиками и итогами твоей активности в Telegram. Открывается двойным кликом по `index.html`, работает без сервера и обрабатывает экспорт в браузере. Данные никуда не отправляются.
 
+## Почему переписка остаётся у тебя
+
+TgPulse читает выбранный тобой `result.json` **только в браузере на твоём компьютере**. В приложении нет сервера, сетевых запросов, аналитики и внешних скриптов: HTML, JavaScript, шрифты и иконка лежат в скачанной папке. Экспорт не загружается на GitHub и исключён из Git. Тексты сообщений показываются лишь после нажатия кнопки, а карточки сохраняются на твоё устройство.
+
+Абсолютную безопасность любого компьютера обещать нельзя, но сам TgPulse не отправляет переписку третьим лицам. Исходный код открыт для проверки.
+
 ## Скачать и запустить
 
 1. На странице репозитория нажми зелёную кнопку **Code → Download ZIP**. Распакуй скачанный ZIP в удобную папку. Установка не нужна.
@@ -41,6 +47,8 @@
 ## English
 
 **TgPulse beta** is a local Telegram activity dashboard. Click the green **Code → Download ZIP** button, extract the ZIP, and double-click `index.html`; no installation is needed. In Telegram Desktop, export **Account information**, **Contacts list**, and **Personal chats**. **At the bottom of the export dialog, choose machine-readable JSON.** Then select the export folder in TgPulse. No server or upload is required. You can try the fictional demo first.
+
+**Privacy:** TgPulse reads `result.json` in your browser. The app has no server, network requests, analytics, or external scripts; the export stays on your computer and is excluded from Git. No software can promise absolute safety on every device, but TgPulse itself does not transmit your chats.
 
 Explore charts, chat streaks, words, stickers, and yearly or all-time recap cards. Save cards as PNG or PDF, with optional privacy controls. Reply times are estimates. The interface supports Russian and English.
 
