@@ -40,6 +40,7 @@
   function typeLabel() { return { all: tr('Все чаты', 'All chats'), personal: tr('Личные чаты', 'Personal chats'), groups: tr('Группы', 'Groups'), channels: tr('Каналы', 'Channels'), bots: tr('Боты', 'Bots') }[$('type-filter').value] || tr('Все чаты', 'All chats'); }
 
   const searchableChats = ['chat-filter', 'context-chat-filter', 'ranking-chat-filter', 'meme-chat-filter', 'word-chat-filter', 'reply-chat-filter', 'sticker-chat-filter'];
+  const openChatPickers = new Set();
   function matchingChats(id, query) {
     const text = query.trim().toLocaleLowerCase('ru');
     return Object.entries(data?.chats || {}).filter(([chatId, name]) =>
@@ -49,18 +50,68 @@
   function filterChatChoices(id) {
     if (!data) return [];
     const select = $(id), chosen = select.value;
-    const matches = matchingChats(id, $(`${id}-search`).value);
+    const search = $(`${id}-search`);
+    const matches = matchingChats(id, openChatPickers.has(id) ? search.value : '');
     const options = [new Option(tr('Все чаты', 'All chats'), 'all')];
     if (chosen !== 'all' && data.chats[chosen] && !matches.some(([chatId]) => chatId === chosen)) options.push(new Option(data.chats[chosen], chosen));
     for (const [chatId, name] of matches) options.push(new Option(name, chatId));
     if (!matches.length) { const empty = new Option(tr('Совпадений нет', 'No matches'), ''); empty.disabled = true; options.push(empty); }
     select.replaceChildren(...options);
     select.value = chosen;
+    if (openChatPickers.has(id)) {
+      const list = $(`${id}-options`);
+      const entries = search.value.trim() ? matches : [['all', tr('Все чаты', 'All chats')], ...matches];
+      list.replaceChildren(...entries.map(([chatId, name]) => {
+        const option = document.createElement('div');
+        option.className = 'chat-picker-option';
+        option.setAttribute('role', 'option');
+        option.setAttribute('aria-selected', String(chatId === chosen));
+        option.textContent = name;
+        option.addEventListener('pointerdown', event => event.preventDefault());
+        option.addEventListener('click', event => { event.preventDefault(); chooseChat(id, chatId); });
+        return option;
+      }));
+      if (!entries.length) {
+        const empty = document.createElement('div');
+        empty.className = 'chat-picker-empty';
+        empty.textContent = tr('Совпадений нет', 'No matches');
+        list.append(empty);
+      }
+    } else search.value = chosen === 'all' ? tr('Все чаты', 'All chats') : data.chats[chosen] || tr('Все чаты', 'All chats');
     return matches;
   }
   function resetChatSearch(id) {
-    $(`${id}-search`).value = '';
+    openChatPickers.delete(id);
+    $(`${id}-options`).hidden = true;
+    $(`${id}-search`).setAttribute('aria-expanded', 'false');
     filterChatChoices(id);
+  }
+  function openChatPicker(id) {
+    for (const other of [...openChatPickers]) if (other !== id) closeChatPicker(other);
+    openChatPickers.add(id);
+    const search = $(`${id}-search`);
+    search.value = '';
+    search.setAttribute('aria-expanded', 'true');
+    $(`${id}-options`).hidden = false;
+    filterChatChoices(id);
+  }
+  function closeChatPicker(id) {
+    if (!openChatPickers.has(id)) return;
+    openChatPickers.delete(id);
+    $(`${id}-options`).hidden = true;
+    $(`${id}-search`).setAttribute('aria-expanded', 'false');
+    filterChatChoices(id);
+  }
+  function chooseChat(id, chatId) {
+    $(id).value = chatId;
+    closeChatPicker(id);
+    $(id).dispatchEvent(new Event('change', { bubbles: true }));
+  }
+  function syncChatPickerLabels() {
+    for (const id of searchableChats) if (!openChatPickers.has(id)) {
+      const chosen = $(id).value;
+      $(`${id}-search`).value = chosen === 'all' ? tr('Все чаты', 'All chats') : data.chats[chosen] || tr('Все чаты', 'All chats');
+    }
   }
 
   function messageWords(message, skipCommon = true) {
@@ -913,6 +964,7 @@
     renderCalendar(selected);
     renderHours(first, last, selected);
     renderRecords(allSummary.daily, allPeak);
+    syncChatPickerLabels();
   }
 
   function changeZoom(direction, anchor = 0.5, targetChatId = null) {
@@ -1057,17 +1109,28 @@
   });
   for (const id of searchableChats) {
     const search = $(`${id}-search`), select = $(id);
-    search.addEventListener('input', () => filterChatChoices(id));
+    search.setAttribute('role', 'combobox');
+    search.setAttribute('aria-autocomplete', 'list');
+    search.setAttribute('aria-controls', `${id}-options`);
+    search.setAttribute('aria-expanded', 'false');
+    search.addEventListener('focus', () => openChatPicker(id));
+    search.addEventListener('click', () => { if (!openChatPickers.has(id)) openChatPicker(id); });
+    search.addEventListener('input', () => { if (!openChatPickers.has(id)) openChatPicker(id); filterChatChoices(id); });
     search.addEventListener('keydown', event => {
-      if (event.key === 'Escape') { search.value = ''; filterChatChoices(id); return; }
-      if (event.key !== 'Enter' || !search.value.trim()) return;
-      const first = matchingChats(id, search.value)[0];
-      if (!first) return;
+      if (event.key === 'Escape') { closeChatPicker(id); search.blur(); return; }
+      if (event.key !== 'Enter' || !openChatPickers.has(id)) return;
+      const first = search.value.trim() ? matchingChats(id, search.value)[0]?.[0] : 'all';
+      if (first == null) return;
       event.preventDefault();
-      select.value = first[0];
-      select.dispatchEvent(new Event('change', { bubbles: true }));
+      chooseChat(id, first);
     });
+    select.classList.add('chat-native-select');
+    select.setAttribute('aria-hidden', 'true');
+    select.tabIndex = -1;
   }
+  document.addEventListener('pointerdown', event => {
+    for (const id of [...openChatPickers]) if (!$(`${id}-picker`).contains(event.target)) closeChatPicker(id);
+  });
   for (const id of ['mode-filter', 'step-filter']) $(id).addEventListener('change', render);
   $('chat-filter').addEventListener('change', () => {
     const id = $('chat-filter').value;

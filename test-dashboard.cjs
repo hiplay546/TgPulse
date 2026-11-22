@@ -29,6 +29,8 @@ class Element {
   removeAttribute(name) { delete this[name]; }
   add(option) { this.children.push(option); }
   scrollIntoView() {}
+  blur() {}
+  contains(item) { return item === this || this.children.includes(item); }
   getBoundingClientRect() { return { left: 0, width: 1000, height: 320 }; }
 }
 
@@ -50,6 +52,7 @@ const chartHelp = { nodeValue: '↔ Перетаскивай ползунок п
 const staticNodes = [staticHeading, jsonWarning, accountOption, chartHelp];
 const document = {
   body: new Element('body'),
+  addEventListener() {},
   getElementById: id => id === 'source-label' ? null : get(id),
   querySelector: () => chartPanel,
   querySelectorAll: () => [],
@@ -121,11 +124,17 @@ const fixture = {
   get('recap-hide-names').listeners.change();
   assert.equal(get('recap-cards').children[4].children[2].textContent, 'Бот');
   assert.equal(get('ranking-chat-filter').children.length, 5);
+  get('chat-filter-search').listeners.focus();
+  assert.equal(get('chat-filter-options').hidden, false);
   get('chat-filter-search').value = 'Личный';
   get('chat-filter-search').listeners.input();
   assert.equal(get('chat-filter').children.length, 2);
+  assert.equal(get('chat-filter-options').children.length, 1);
+  assert.equal(get('chat-filter-options').children[0].textContent, 'Личный чат');
   get('chat-filter-search').listeners.keydown({ key: 'Enter', preventDefault() {} });
   assert.equal(get('chat-filter').value, '11');
+  assert.equal(get('chat-filter-search').value, 'Личный чат');
+  assert.equal(get('chat-filter-options').hidden, true);
   get('chat-filter').value = '11';
   get('chat-filter').listeners.change();
   assert.equal(get('chart-context').textContent, 'Личный чат');

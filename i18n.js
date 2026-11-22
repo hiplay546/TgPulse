@@ -155,7 +155,7 @@
     'Перед публикацией проверь карточку: она может рассказать о твоей переписке больше, чем кажется.': ['Перед публикацией проверь карточку: она может рассказать о твоей переписке больше, чем кажется.', 'Check each card before sharing: it may reveal more about your chats than you expect.'],
   };
   const attributes = {
-    'Аватар профиля': 'Profile picture', 'Поиск чата': 'Search chats', 'Найти чат': 'Search chats',
+    'Аватар профиля': 'Profile picture', 'Поиск чата': 'Search chats', 'Найти чат': 'Search chats', 'Выбери или найди чат': 'Choose or search chats',
     'Например, Бля': 'For example, hello', 'Например, привет': 'For example, hello', 'Найти человека или чат': 'Find a person or chat',
     'Поиск по чатам': 'Search chats', 'Язык интерфейса': 'Interface language',
     'Отдалить': 'Zoom out', 'Приблизить': 'Zoom in',
