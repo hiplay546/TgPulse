@@ -30,7 +30,13 @@
     <section id="start-screen" class="start-screen panel">
       <p class="eyebrow">НАЧАТЬ АНАЛИЗ</p>
       <h2>Выберите экспорт Telegram</h2>
-      <ol class="start-steps"><li>В Telegram Desktop откройте <strong>Настройки -> Продвинутые настройки -> Экспорт данных</strong>.</li><li>Выберите нужные чаты. Чтобы экспорт прошёл быстрее, отключи <strong>фотографии и другие медиафайлы</strong>.</li><li>Внизу окна экспорта обязательно выбери формат <strong>JSON</strong>, затем дождитесь завершения.</li><li>Обычно папка называется ...\Downloads\Telegram Desktop\DataExport_yyyy-mm-dd</li></ol>
+      <ol class="start-steps">
+        <li>В Telegram Desktop открой <strong>Настройки → Продвинутые настройки → Экспорт данных</strong>.</li>
+        <li>Отметь <strong>Информация об аккаунте</strong>, <strong>Список контактов</strong> и <strong>Личные чаты</strong>.</li>
+        <li>Для быстрого экспорта отключи <strong>фотографии и другие медиафайлы</strong>.</li>
+        <li>Дождись завершения экспорта и выбери папку с файлом <strong>result.json</strong>.</li>
+      </ol>
+      <p class="json-warning"><strong>ВАЖНО:</strong> в самом низу окна экспорта выбери <strong>машиночитаемый формат JSON</strong>.</p>
       <label class="file-button start-button" for="folder-input">Выбрать папку экспорта</label>
       <label class="json-link" for="file-input">Или открыть только result.json</label>
       <button id="demo-open" class="demo-button" type="button">Посмотреть демо на вымышленных данных</button>

@@ -44,12 +44,15 @@ get('start-screen').hidden = false;
 get('dashboard').hidden = true;
 const chartPanel = new Element();
 const staticHeading = { nodeValue: 'Выберите экспорт Telegram' };
+const jsonWarning = { nodeValue: 'машиночитаемый формат JSON' };
+const accountOption = { nodeValue: 'Информация об аккаунте' };
+const staticNodes = [staticHeading, jsonWarning, accountOption];
 const document = {
   body: new Element('body'),
   getElementById: id => id === 'source-label' ? null : get(id),
   querySelector: () => chartPanel,
   querySelectorAll: () => [],
-  createTreeWalker: () => ({ currentNode: null, nextNode() { if (this.currentNode) return false; this.currentNode = staticHeading; return true; } }),
+  createTreeWalker: () => ({ currentNode: null, index: 0, nextNode() { if (this.index >= staticNodes.length) return false; this.currentNode = staticNodes[this.index++]; return true; } }),
   documentElement: { lang: 'ru' },
   createElement: tag => new Element(tag),
   createElementNS: (_, tag) => new Element(tag),
@@ -316,6 +319,8 @@ const fixture = {
   get('language-filter').value = 'en';
   get('language-filter').listeners.change();
   assert.equal(staticHeading.nodeValue, 'Choose a Telegram export');
+  assert.equal(jsonWarning.nodeValue, 'machine-readable JSON format');
+  assert.equal(accountOption.nodeValue, 'Account information');
   assert.equal(get('chat-filter').children[0].text, 'All chats');
   assert.match(get('record-context').textContent, /full export/);
   assert.match(get('footer-period').textContent, /^Period:/);

@@ -4,11 +4,13 @@
 
 Локальная страница с графиками и итогами твоей активности в Telegram. Открывается двойным кликом по `index.html`, работает без сервера и обрабатывает экспорт в браузере. Данные никуда не отправляются.
 
-## Запуск
+## Скачать и запустить
 
-1. В **Telegram Desktop** открой **Настройки → Продвинутые настройки → Экспорт данных**. Выбери чаты, отключи фотографии и другие медиафайлы для быстрого экспорта, а внизу выбери формат **JSON**.
-2. Дважды щёлкни `index.html`.
-3. Нажми **«Выбрать папку экспорта»** и укажи папку с `result.json`. При выборе папки страница также покажет аватар. Можно открыть только `result.json`, но тогда аватар не загрузится.
+1. На странице репозитория нажми зелёную кнопку **Code → Download ZIP**. Распакуй скачанный ZIP в удобную папку. Установка не нужна.
+2. Дважды щёлкни `index.html` в распакованной папке.
+3. В **Telegram Desktop** открой **Настройки → Продвинутые настройки → Экспорт данных**. Отметь **Информация об аккаунте**, **Список контактов** и **Личные чаты**. Для быстрого экспорта отключи фотографии и другие медиафайлы.
+4. **ВАЖНО: в самом низу окна экспорта выбери машиночитаемый формат JSON.** Дождись окончания экспорта.
+5. На открытой странице нажми **«Выбрать папку экспорта»** и укажи папку с `result.json`. При выборе папки страница также покажет аватар. Можно открыть только `result.json`, но тогда аватар не загрузится.
 
 Если экспорта пока нет, нажми **«Посмотреть демо на вымышленных данных»**.
 
@@ -38,7 +40,7 @@
 
 ## English
 
-**TgPulse beta** is a local Telegram activity dashboard. Export your chats as **JSON** in Telegram Desktop, then open `index.html` and choose the export folder. No server or upload is required. You can try the fictional demo first.
+**TgPulse beta** is a local Telegram activity dashboard. Click the green **Code → Download ZIP** button, extract the ZIP, and double-click `index.html`; no installation is needed. In Telegram Desktop, export **Account information**, **Contacts list**, and **Personal chats**. **At the bottom of the export dialog, choose machine-readable JSON.** Then select the export folder in TgPulse. No server or upload is required. You can try the fictional demo first.
 
 Explore charts, chat streaks, words, stickers, and yearly or all-time recap cards. Save cards as PNG or PDF, with optional privacy controls. Reply times are estimates. The interface supports Russian and English.
 
