@@ -46,7 +46,8 @@ const chartPanel = new Element();
 const staticHeading = { nodeValue: 'Выберите экспорт Telegram' };
 const jsonWarning = { nodeValue: 'машиночитаемый формат JSON' };
 const accountOption = { nodeValue: 'Информация об аккаунте' };
-const staticNodes = [staticHeading, jsonWarning, accountOption];
+const chartHelp = { nodeValue: '↔ Перетаскивай ползунок под графиком, чтобы двигаться по времени' };
+const staticNodes = [staticHeading, jsonWarning, accountOption, chartHelp];
 const document = {
   body: new Element('body'),
   getElementById: id => id === 'source-label' ? null : get(id),
@@ -321,6 +322,7 @@ const fixture = {
   assert.equal(staticHeading.nodeValue, 'Choose a Telegram export');
   assert.equal(jsonWarning.nodeValue, 'machine-readable JSON format');
   assert.equal(accountOption.nodeValue, 'Account information');
+  assert.equal(chartHelp.nodeValue, '↔ Drag the scrollbar below the chart to move through time');
   assert.equal(get('chat-filter').children[0].text, 'All chats');
   assert.match(get('record-context').textContent, /full export/);
   assert.match(get('footer-period').textContent, /^Period:/);
